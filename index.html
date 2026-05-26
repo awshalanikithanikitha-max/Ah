@@ -1,0 +1,92 @@
+<script>
+
+const questions = [
+  { q:"1. Do you still love me if I don't want children? 👶", gif:"https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif", correct:"yes" },
+
+  { q:"2. Do I annoy you? 😭", gif:"https://media.giphy.com/media/l2R0corOGwFTlKZjO/giphy.gif", correct:"no" },
+
+  { q:"3. Is living with me your best decision? 🏡", gif:"https://media.giphy.com/media/f6D6Qd9qE33SAfAF69/giphy.gif", correct:"yes" },
+
+  { q:"4. Do you really want me? ❤️", gif:"https://media.giphy.com/media/ICOgUNjpvO0PC/giphy.gif", correct:"yes" },
+
+  { q:"5. I have trust issues, do you still trust me? 🤍", gif:"https://media.giphy.com/media/VbnUQpnihPSIgIXuZv/giphy.gif", correct:"yes" },
+
+  { q:"6. Have you survived my mood swings successfully for 1 year? 😂", gif:"https://media.giphy.com/media/26FLdmIp6wJr91JAI/giphy.gif", correct:"yes" },
+
+  { q:"7. Do you still choose me when I've cancer? ♋", gif:"https://media.giphy.com/media/LYJLrM8VkBmyCKOd1O/giphy.gif", correct:"yes" },
+
+  { q:"8. Do you secretly enjoy my overthinking? 🤭", gif:"https://media.giphy.com/media/3oriO6qJiXajN0TyDu/giphy.gif", correct:"yes" },
+
+  { q:"9. Do you secretly hate me? 😤", gif:"https://media.giphy.com/media/3o6ZtaO9BZHcOjmErm/giphy.gif", correct:"no" },
+
+  { q:"10. Would you ever cheat on me? 👀", gif:"https://media.giphy.com/media/QBd2kLB5qDmysEXre9/giphy.gif", correct:"no" },
+
+  { q:"11. Do you still love me even if I steal your money? 💸", gif:"https://media.giphy.com/media/26his5i9YJTqsqCyY/giphy.gif", correct:"yes" },
+
+  { q:"12. Am I more dramatic than most movies? 🎭", gif:"https://media.giphy.com/media/1BXa2alBjrCXC/giphy.gif", correct:"yes" },
+
+  { q:"13. Do I love you? 💖", gif:"https://media.giphy.com/media/3oriO6qJiXajN0TyDu/giphy.gif", correct:"yes" },
+
+  { q:"14. Are we the cutest couple? 🥹", gif:"https://media.giphy.com/media/108M7gCS1JSoO4/giphy.gif", correct:"yes" },
+
+  { q:"15. Are you ready forever with me? ♾️", gif:"https://media.giphy.com/media/euMGM3uD3NHva/giphy.gif", correct:"yes" }
+];
+
+let current = 0;
+let score = 0;
+
+const quiz = document.getElementById("quiz");
+const result = document.getElementById("result");
+const gif = document.getElementById("gif");
+
+function showQuestion(){
+
+  if(current < questions.length){
+
+    quiz.innerHTML = `
+      <div class="question">
+        ${questions[current].q}
+      </div>
+
+      <button class="yes" onclick="answer('yes')">YES 💖</button>
+      <button class="no" onclick="answer('no')">NO 😭</button>
+    `;
+
+    gif.src = questions[current].gif;
+
+  } else {
+
+    quiz.innerHTML = "";
+    gif.src = "https://media.giphy.com/media/26FLdmIp6wJr91JAI/giphy.gif";
+
+    let percent = Math.round((score / questions.length) * 100);
+
+    result.innerHTML = `
+      🎉 Quiz Completed 💖<br><br>
+
+      💕 Score: ${score} / ${questions.length} (${percent}%)<br><br>
+
+      ${
+        percent >= 80
+        ? "💖 PERFECT LOVE SCORE 💖<br>You both are insanely cute together 🥹"
+        : percent >= 50
+        ? "💞 GOOD LOVE 💞<br>Some chaos but still strong 😂❤️"
+        : "💔 NEEDS WORK 💔<br>But still love wins at the end 🫶"
+      }
+    `;
+  }
+}
+
+function answer(choice){
+
+  if(choice === questions[current].correct){
+    score++; // correct answer increases love score 💖
+  }
+
+  current++;
+  showQuestion();
+}
+
+showQuestion();
+
+    </script>
